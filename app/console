@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__.'/../vendor/autoload.php';
+
+$commandsDirectory = __DIR__ . '/../src/Commands/';
+
+$load = new \Lab\File\Load;
+$commandsObjects = $load->from($commandsDirectory)->all();
+use Symfony\Component\Console\Application;
+
+$application = new Application('Marco CLI Application Lab', '0.0.1');
+$application->addCommands($commandsObjects);
+$application->run();
